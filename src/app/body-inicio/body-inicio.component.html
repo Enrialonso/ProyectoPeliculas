@@ -1,0 +1,39 @@
+
+<app-banner-imagen-pelis></app-banner-imagen-pelis>
+
+<div class="col-sm-12">
+	
+	<div class="card">
+		<h3 class="card-header">Popular Movies!</h3><br>
+		
+			<div class="row">
+
+				<div *ngFor="let movie of diccionario; let isFirst = first; let isLast = last; let indexfor = index" 
+				class="col-sm-6  col-md-6 col-xl-2 col-12" style="padding-bottom: 5px;">	
+					<div class="card" >
+						<h4 class="card-header">{{ movie.titleLitle }}.</h4>
+						<a routerLink="/pelicula/{{movie.id}}">
+							<img class="img-fluid" style="width: 100%; display: block;" 
+							src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}" alt="{{ movie.title }}">
+						</a>
+						<div class="card-body">
+							<p class="card-text">{{movie.overviewLitle}} </p>
+						</div>
+						<div class="card-footer">
+
+									<i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{movie.vote_average}}</span> </i> 
+							 
+									<i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{movie.vote_count}} </span> </i> 
+							
+						</div>
+					</div>
+				</div> 	
+				
+			</div>
+	
+
+		<div class="card-footer text-muted">
+			Footer!
+		</div>
+	</div>
+</div>

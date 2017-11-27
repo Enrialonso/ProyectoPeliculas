@@ -1,0 +1,33 @@
+<div class="col-sm-12 ">
+  
+  <div class="card">
+    <h3 class="card-header">Serie - {{ infoSerie.original_name }}.</h3><br>
+    
+      <div class="row card-deck">
+      
+          <div class="col-sm-3 " style="padding-bottom: 25px">
+
+              <img class="img-fluid img-thumbnail" src="https://image.tmdb.org/t/p/w640/{{ infoSerie.poster_path }}" 
+              style="width: 100%;" alt="Pelicula - {{ infoSerie.original_name }}">
+
+          </div>
+          <div class="col-sm-5 " style="padding-bottom: 25px; ">
+            
+              <div class="card border-success ">
+                  <div class="card-body">
+                    <blockquote class="card-blockquote">
+                      <h1> <span class="text-muted">Pelicula: </span>{{ infoSerie.original_name }}.</h1>
+                      <h3> <span class="text-muted">Overview: </span>{{ infoSerie.overview }}</h3>
+                    </blockquote>
+                  </div>
+                </div>
+          
+          </div>   
+      
+      </div> 
+
+    <div class="card-footer text-muted">
+      Footer!
+    </div>
+  </div>
+</div>

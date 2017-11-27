@@ -1,0 +1,39 @@
+
+<app-banner-imagen-pelis></app-banner-imagen-pelis>
+
+<div class="col-sm-12">
+	
+	<div class="card">
+		<h3 class="card-header">Popular People!</h3><br>
+		
+			<div class="row">
+
+				<div *ngFor="let persona of diccionario; let isFirst = first; let isLast = last; let indexfor = index" 
+				class="col-sm-6  col-md-6 col-xl-2 col-12" style="padding-bottom: 5px;">	
+					<div class="card" >
+						<h4 class="card-header">{{ persona.name }}.</h4>
+						<a routerLink="/persona/{{persona.id}}">
+							<img class="img-fluid" style="width: 100%; display: block;" 
+							src="https://image.tmdb.org/t/p/w640{{persona.profile_path}}" alt="{{ persona.name }}">
+						</a>
+						<div class="card-body">
+							<p class="card-text">{{persona.fristOverview}} </p>
+						</div>
+						<div class="card-footer">
+
+									<i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{persona.vote_average}}</span> </i> 
+							 
+									<i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{persona.vote_count}} </span> </i> 
+							
+						</div>
+					</div>
+				</div> 	
+				
+			</div>
+	
+
+		<div class="card-footer text-muted">
+			Footer!
+		</div>
+	</div>
+</div>
