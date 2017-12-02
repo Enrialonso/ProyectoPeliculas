@@ -3,6 +3,7 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MainNavBarComponent } from './main-nav-bar/main-nav-bar.component';
@@ -12,6 +13,8 @@ import { ShowPeliculaComponent } from './show-pelicula/show-pelicula.component';
 import { ShowSerieComponent } from './show-serie/show-serie.component';
 import { PopularSeriesComponent } from './popular-series/popular-series.component';
 import { PopularPeopleComponent } from './popular-people/popular-people.component';
+import { GetserverService } from './servicios/getserver.service';
+
 
 const routes: Routes = [
   { path: '', component: BodyInicioComponent },
@@ -35,10 +38,11 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    HttpModule
     
   ],
-  providers: [],
+  providers: [GetserverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
