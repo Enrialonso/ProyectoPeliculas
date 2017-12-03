@@ -23,5 +23,20 @@ export class GetserverService {
     return this.http.get( this.presURL + 'pelicula/' + id )
     .map( res => res.json());
     }
+  
+  getSerieUnica(id) {
+    return this.http.get( this.presURL + 'serie/' + id )
+    .map( res => res.json());
+    }
+
+  getPersonas() {
+    return this.http.get( this.presURL + 'popular-people')
+    .map( res => res.json());
+    }
+
+  getPagPeli(id) {
+    return this.http.get( this.presURL + 'pag-peli/' + id)
+    .map( res => res.json());
+    }
 
 }

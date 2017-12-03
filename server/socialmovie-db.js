@@ -1,18 +1,26 @@
 var db = require('./db')
 
-exports.findAll = function(param, callback) {
+exports.findAll = function(param, id, callback) {
 	var collection = db.collection(param)
 	console.log(param)
-	collection.find().limit(16).sort({'popularity': -1}).toArray(function(err,docs) {
+	console.log('esto es id: ' + id)
+	if(param == 'Personas2'){var cantidad = 18}else{var cantidad = 16}
+	id = parseInt(id)
+	if(id == 0){id = 0}else{id = id * 18}
+
+	collection.find().skip(id).limit(cantidad).sort({'popularity': -1}).toArray(function(err,docs) {
 		callback(err,docs)
 	})
 }
 
 exports.findOne = function(param, id, callback) {
 	var collection = db.collection(param)
-	console.log(param)
+
 	console.log('paso por la busqueda find one')
-	query = {"id_TMDB": String(id)}
+
+	if(param == 'all_peliculas_TMDB'){query = {"id_TMDB": String(id)}}
+	else if(param == 'all_series_TMDB'){query = {"id": parseInt(id)}}
+	
 	console.log(query)
 	//var objectId = db.getObjectId(key)
 	collection.findOne(query, function(err,doc) {

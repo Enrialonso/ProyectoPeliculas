@@ -14,6 +14,7 @@ import { ShowSerieComponent } from './show-serie/show-serie.component';
 import { PopularSeriesComponent } from './popular-series/popular-series.component';
 import { PopularPeopleComponent } from './popular-people/popular-people.component';
 import { GetserverService } from './servicios/getserver.service';
+import { PaginacionPelisComponent } from './paginacion-pelis/paginacion-pelis.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'pelicula/:id', component: ShowPeliculaComponent },
   { path: 'popular-series', component: PopularSeriesComponent },
   { path: 'serie/:id', component: ShowSerieComponent },
-  { path: 'popular-people', component: PopularPeopleComponent }
+  { path: 'popular-people', component: PopularPeopleComponent },
+  { path: 'pag-peli/:id', component: BodyInicioComponent }
 ];
 
 @NgModule({
@@ -33,7 +35,8 @@ const routes: Routes = [
     ShowPeliculaComponent,
     ShowSerieComponent,
     PopularSeriesComponent,
-    PopularPeopleComponent
+    PopularPeopleComponent,
+    PaginacionPelisComponent
   ],
   imports: [
     BrowserModule,

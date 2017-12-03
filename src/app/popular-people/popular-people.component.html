@@ -12,20 +12,8 @@
 				class="col-sm-6  col-md-6 col-xl-2 col-12" style="padding-bottom: 5px;">	
 					<div class="card" >
 						<h4 class="card-header">{{ persona.name }}.</h4>
-						<a routerLink="/persona/{{persona.id}}">
 							<img class="img-fluid" style="width: 100%; display: block;" 
-							src="https://image.tmdb.org/t/p/w640{{persona.profile_path}}" alt="{{ persona.name }}">
-						</a>
-						<div class="card-body">
-							<p class="card-text">{{persona.fristOverview}} </p>
-						</div>
-						<div class="card-footer">
-
-									<i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{persona.vote_average}}</span> </i> 
-							 
-									<i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{persona.vote_count}} </span> </i> 
-							
-						</div>
+							src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{persona.path_photo}}" alt="{{ persona.name }}">
 					</div>
 				</div> 	
 				

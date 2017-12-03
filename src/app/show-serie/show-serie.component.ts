@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { popularMovies } from '../modelos/popularmovies.modelo'
+import { GetserverService } from '../servicios/getserver.service';
 
 @Component({
   selector: 'app-show-serie',
@@ -15,18 +16,26 @@ export class ShowSerieComponent implements OnInit {
   
   infoSerie: object
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private getserverService: GetserverService) {
+
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.getserverService.getSerieUnica(this.id).subscribe(serie => {
+        console.log(serie)
+        this.infoSerie = serie;
+    })
+
+   }
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    //this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     
-        for(let seri of this.objeto.Serie){
-          if (seri ['id'] === this.id){
-            this.infoSerie = seri
-          }
-        }
+        //for(let seri of this.objeto.Serie){
+         // if (seri ['id'] === this.id){
+            //this.infoSerie = seri
+         //}
+        //}
     
-        console.log(this.infoSerie)
+        //console.log(this.infoSerie)
   }
 
 }

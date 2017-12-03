@@ -7,17 +7,73 @@
       
           <div class="col-sm-3 " style="padding-bottom: 25px">
 
-              <img class="img-fluid img-thumbnail" src="https://image.tmdb.org/t/p/w640/{{ infoSerie.poster_path }}" 
-              style="width: 100%;" alt="Pelicula - {{ infoSerie.original_name }}">
+              <img class="img-fluid img-thumbnail" src="https://image.tmdb.org/t/p/w640{{ infoSerie.info_TMDB.poster_path }}" 
+              style="width: 100%;" alt="Pelicula - {{ infoSerie.info_TMDB.original_name }}">
 
           </div>
-          <div class="col-sm-5 " style="padding-bottom: 25px; ">
+          <div class="col-sm-9 " style="padding-bottom: 25px; ">
             
               <div class="card border-success ">
                   <div class="card-body">
                     <blockquote class="card-blockquote">
-                      <h1> <span class="text-muted">Pelicula: </span>{{ infoSerie.original_name }}.</h1>
-                      <h3> <span class="text-muted">Overview: </span>{{ infoSerie.overview }}</h3>
+                      <h1> <span class="text-muted">Serie: </span>{{ infoSerie.info_TMDB.original_name }}.</h1>
+                      <h3> <span class="text-muted">Overview: </span>{{ infoSerie.info_TMDB.overview }}</h3>
+                      <h3> <span class="text-muted">Genero: </span> 
+                        <span *ngFor="let info of infoSerie.info_TMDB.genres; let isfirst= first; let isLast = last;">  
+                      
+                        <span *ngIf="isFirst; else NormalDataOrLast"> {{info.name}}, </span>
+                        <ng-template #NormalDataOrLast>
+                        <span *ngIf="!isLast; else lastData"> {{info.name}}, </span>
+                        </ng-template>
+                        <ng-template #lastData>
+                        <span> {{info.name}}. </span>
+                        </ng-template>
+
+                      </span>
+
+                    </h3>
+
+                      <h3> <span class="text-muted">Duracion por capitulo: </span> 
+                        <span *ngFor="let duracion of infoSerie.info_TMDB.episode_run_time; let isfirstD = first; let isLastD = last;">  
+                      
+                        <span *ngIf="isFirstD; else NormalDataOrLastduracion"> {{duracion}}, </span>
+                        <ng-template #NormalDataOrLastduracion>
+                        <span *ngIf="!isLastD; else lastDataduracion"> {{duracion}}, </span>
+                        </ng-template>
+                        <ng-template #lastDataduracion>
+                        <span> {{duracion}} min. </span>
+                        </ng-template>
+
+                      </span>
+
+                      </h3>
+
+                      <h3> <span class="text-muted">Productoras: </span> 
+                        <span *ngFor="let productoras of infoSerie.info_TMDB.production_companies; let isfirstD = first; let isLastD = last;">  
+                      
+                        <span *ngIf="isFirstD; else NormalDataOrLastduracion"> {{productoras.name}}, </span>
+                        <ng-template #NormalDataOrLastduracion>
+                        <span *ngIf="!isLastD; else lastDataduracion"> {{productoras.name}}, </span>
+                        </ng-template>
+                        <ng-template #lastDataduracion>
+                        <span> {{productoras.name}}. </span>
+                        </ng-template>
+
+                      </span>
+
+                      </h3>
+
+                      <h3><span class="text-muted">Temporadas: </span> </h3>
+
+                      <ul>
+
+                          <li *ngFor="let temporada of infoSerie.info_TMDB.seasons;">
+                             <h5><span> <span class="text-muted">Temporada:</span>  {{temporada.season_number + 1 }}, 
+                              <span class="text-muted">Episodios:</span>  {{ temporada.episode_count }}. </span></h5>
+                          </li>
+
+                      </ul>
+
                     </blockquote>
                   </div>
                 </div>

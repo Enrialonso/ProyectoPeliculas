@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { popularMovies } from '../modelos/popularmovies.modelo'
+import { GetserverService } from '../servicios/getserver.service'
 
 @Component({
   selector: 'app-popular-people',
@@ -12,14 +13,16 @@ export class PopularPeopleComponent implements OnInit {
   
   diccionario: Array<object> = []
 
-  constructor() { 
+  constructor(private getserverService: GetserverService) { 
 
-    for (let persona of this.objeto.Persona) {
-            
-            persona['fristOverview'] = persona['known_for'][0]['overview'].substring(0,150) + '...'
-            this.diccionario.push(persona)
-      
-          }
+    this.getserverService.getPersonas().subscribe(personas => {
+      for ( const id$ in personas) {
+        const p = personas[id$];
+        this.diccionario.push(personas[id$]);
+        
+        } 
+        console.log(this.diccionario)
+      })
 
   }
 
