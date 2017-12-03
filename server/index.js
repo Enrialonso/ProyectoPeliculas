@@ -15,7 +15,7 @@ app.use(methodOverride())
 
 app.use('/', require('./routes-socialmovie.js'))
 
-db.connect('mongodb://localhost:27017/moviesocial', function(err) {
+db.connect('mongodb://localhost:27017/socialmovie', function(err) {
 	if (err) throw err
 	console.log('Conexion realizada')
 

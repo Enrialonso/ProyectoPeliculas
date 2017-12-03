@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
-import { popularMovies } from '../modelos/popularmovies.modelo'
+import { GetserverService } from '../servicios/getserver.service';
 
 @Component({
   selector: 'app-show-pelicula',
@@ -9,25 +9,19 @@ import { popularMovies } from '../modelos/popularmovies.modelo'
 })
 export class ShowPeliculaComponent implements OnInit {
 
-  public id: number;
-
-  objeto = new popularMovies
+  public id: string;
 
   infoPelicula: object
 
-  constructor(private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-
-    for(let peli of this.objeto.Movie){
-      if (peli ['id'] === this.id){
-        this.infoPelicula = peli
-      }
-    }
-
-    console.log(this.infoPelicula)
+  constructor(private route: ActivatedRoute, private getserverService: GetserverService) { 
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getserverService.getPeliculaUnica(this.id).subscribe(pelis => {
+        console.log(pelis)
+        this.infoPelicula = pelis;
+    })
 
   }
+
+  ngOnInit() { }
 
 }

@@ -8,8 +8,8 @@
 		
 			<div class="row">
 
-				<div *ngFor="let movie of diccionario; let isFirst = first; let isLast = last; let indexfor = index" 
-				class="col-sm-6  col-md-6 col-xl-2 col-12" style="padding-bottom: 5px;">	
+				<div *ngFor="let movie of diccionario;" 
+				class="col-sm-6  col-md-4 col-xl-3 col-12" style="padding-bottom: 5px;">	
 					<div class="card" >
 						<h4 class="card-header">{{ movie.info_TMDB.titleLitel}}.</h4>
 						<a routerLink="/pelicula/{{movie.id_TMDB}}">

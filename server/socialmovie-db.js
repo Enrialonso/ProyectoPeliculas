@@ -3,16 +3,19 @@ var db = require('./db')
 exports.findAll = function(param, callback) {
 	var collection = db.collection(param)
 	console.log(param)
-	collection.find().limit(18).sort({'popularity': -1}).toArray(function(err,docs) {
+	collection.find().limit(16).sort({'popularity': -1}).toArray(function(err,docs) {
 		callback(err,docs)
 	})
 }
 
-exports.findOne = function(key,callback) {
-	var collection = db.collection('personas')
-
-	var objectId = db.getObjectId(key)
-	collection.findOne({_id: objectId}, function(err,doc) {
+exports.findOne = function(param, id, callback) {
+	var collection = db.collection(param)
+	console.log(param)
+	console.log('paso por la busqueda find one')
+	query = {"id_TMDB": String(id)}
+	console.log(query)
+	//var objectId = db.getObjectId(key)
+	collection.findOne(query, function(err,doc) {
 		callback(err,doc)
 	})	
 }

@@ -9,21 +9,21 @@
 			<div class="row">
 
 				<div *ngFor="let serie of diccionario; let isFirst = first; let isLast = last; let indexfor = index" 
-				class="col-sm-6  col-md-6 col-xl-2 col-12" style="padding-bottom: 5px;">	
+				class="col-sm-6  col-md-4 col-xl-3 col-12" style="padding-bottom: 5px;">	
 					<div class="card" >
-						<h4 class="card-header">{{ serie.original_nameLitle }}.</h4>
+						<h4 class="card-header">{{ serie.info_TMDB.nameLitel }}.</h4>
 						<a routerLink="/serie/{{serie.id}}">
 							<img class="img-fluid" style="width: 100%; display: block;" 
-							src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{serie.poster_path}}" alt="{{ serie.title }}">
+							src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{serie.info_TMDB.poster_path}}" alt="{{ serie.info_TMDB.name }}">
 						</a>
 						<div class="card-body">
-							<p class="card-text">{{serie.overviewLitle}} </p>
+							<p class="card-text">{{serie.info_TMDB.overviewLitle}} </p>
 						</div>
 						<div class="card-footer">
 
-									<i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{serie.vote_average}}</span> </i> 
+									<i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{serie.info_TMDB.vote_average}}</span> </i> 
 							 
-									<i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{serie.vote_count}} </span> </i> 
+									<i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{serie.info_TMDB.vote_count}} </span> </i> 
 							
 						</div>
 					</div>

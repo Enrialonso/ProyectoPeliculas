@@ -3,9 +3,33 @@ var router = express.Router()
 
 var dbPersonas = require('./socialmovie-db')
 
+router.get('/pelicula/:id', function(req,res) {
+	console.log('GET /pelicula')
+	var coleccion = 'all_peliculas_TMDB'
+	var id = req.params.id
+	console.log(id)
+	dbPersonas.findOne(coleccion, id, function(err,docs) {
+		if (err) res.send(500, err.message)
+
+		console.log('docs extraidos peliculas')
+		res.status(200).jsonp(docs)
+	})
+})
+
 router.get('/', function(req,res) {
 	console.log('GET /')
 	var coleccion = 'all_peliculas_TMDB'
+	dbPersonas.findAll(coleccion, function(err,docs) {
+		if (err) res.send(500, err.message)
+
+		console.log('docs extraidos inicio')
+		res.status(200).jsonp(docs)
+	})
+})
+
+router.get('/popular-series', function(req,res) {
+	console.log('GET /popular-series')
+	var coleccion = 'all_series_TMDB'
 	dbPersonas.findAll(coleccion, function(err,docs) {
 		if (err) res.send(500, err.message)
 
@@ -14,6 +38,9 @@ router.get('/', function(req,res) {
 	})
 })
 
+
+
+/*
 router.get('/:id', function(req,res) {
 	console.log('GET /personas/'+req.params.id)
 
@@ -60,7 +87,7 @@ router.delete('/:id', function(req,res) {
 		res.status(200).jsonp(docs);
 	})
 })
-
+*/
 
 
 
