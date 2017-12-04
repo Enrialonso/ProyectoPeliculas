@@ -34,7 +34,7 @@ export class GetserverService {
     .map( res => res.json());
     }
 
-  getPagPeli(id) {
+  getPaginacionPeli(id) {
     return this.http.get( this.presURL + 'pag-peli/' + id)
     .map( res => res.json());
     }

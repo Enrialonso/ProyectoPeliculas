@@ -31,7 +31,28 @@
 				
 			</div>
 	
-			<app-paginacion-pelis></app-paginacion-pelis>
+			<div class="row col-sm-12">
+				
+					  <div class="col-sm-6" style="padding-top: 10px;">
+					
+						<a *ngIf="nextPagePelis == 1 else htmlLocalHost" href="/" class="btn-block btn btn-success disabled" role="button"  > <h2>Atras</h2> </a>
+						  <ng-template #htmlLocalHost>
+							<a *ngIf="nextPagePelis == 2 else conteEnBoton" routerLink="/" class="btn-block btn btn-success" role="button"  > <h2>Atras</h2> </a>
+						  </ng-template>
+						  <ng-template #conteEnBoton>
+							<a routerLink="/pag-peli/{{previusPagePeli}}" class="btn-block btn btn-success" role="button"  > <h2>Atras</h2> </a>
+						  </ng-template>
+						
+					
+					  </div>
+					
+					  <div class="col-sm-6" style="padding-top: 10px;">
+						
+							<a routerLink="/pag-peli/{{nextPagePelis}}" (click)="ngOnInit()" class="btn-block btn btn-success" role="button" > <h2>Siguiente</h2> </a>
+						
+					  </div>
+				
+					</div> 
 
 		<div class="card-footer text-muted">
 			Footer!

@@ -14,13 +14,28 @@ export class BodyInicioComponent implements OnInit {
 
   diccionario: Array<object> = []
 
-  id: string
+  id: number
+
+  conteo: number
+
+  nextPagePelis = 0
+  previusPagePeli = 0
+  idPage: number
 
   constructor(private getserverService: GetserverService,private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit() { 
 
-    if(this.route.snapshot.paramMap.get('id') == null){    
+    this.botonPaginacion(this.id)
+    this.incioShowPelis(this.id)
+        
+  }
+
+  incioShowPelis(idPag){
+
+    this.diccionario = []
+
+    if(idPag == null){    
       this.getserverService.getPelis().subscribe(pelis => {
         for ( const id$ in pelis) {
           const p = pelis[id$];
@@ -38,8 +53,8 @@ export class BodyInicioComponent implements OnInit {
         })
 
      }else{
-      this.id = this.route.snapshot.paramMap.get('id');
-      this.getserverService.getPagPeli(parseInt(this.id)).subscribe(pelis => {
+      //idPag = this.route.snapshot.paramMap.get('id');
+      this.getserverService.getPaginacionPeli(parseInt(idPag)).subscribe(pelis => {
         for ( const id$ in pelis) {
           const p = pelis[id$];
             if(p.info_TMDB.original_title.length  > 18){
@@ -57,7 +72,25 @@ export class BodyInicioComponent implements OnInit {
         
      }
 
-   }
+  }
+
+  botonPaginacion(id){
+
+    if(id == null){
+      this.nextPagePelis = 1
+      this.previusPagePeli = 0
+    }else{
+      this.idPage = parseInt(id)
+      this.nextPagePelis = this.idPage + 1
+      this.previusPagePeli = 0
+
+        if(this.idPage > 1){
+          this.previusPagePeli = this.idPage - 1
+        }
+
+    }
+
+  }
 
 }
 
