@@ -16,27 +16,46 @@ export class BodyInicioComponent implements OnInit {
 
   id: number
 
-  conteo: number
+  conteo: number = 0
 
   nextPagePelis = 0
   previusPagePeli = 0
   idPage: number
 
-  constructor(private getserverService: GetserverService,private route: ActivatedRoute) { }
+  constructor(private getserverService: GetserverService,private route: ActivatedRoute) { 
+
+    if(this.route.snapshot.paramMap.get('id') == null)
+    {this.conteo = 0}
+    else
+    {this.conteo = parseInt(this.route.snapshot.paramMap.get('id'))}
+
+   }
 
   ngOnInit() { 
 
-    this.botonPaginacion(this.id)
-    this.incioShowPelis(this.id)
+    this.botonPaginacion(this.conteo)
+    this.incioShowPelis(this.conteo)
         
   }
 
-  incioShowPelis(idPag){
+  previusPage(){
+    this.conteo = this.conteo - 1
+    this.botonPaginacion(this.conteo)
+    this.incioShowPelis(this.conteo)
+  }
+
+  nextPage(){
+    this.conteo = this.conteo + 1
+    this.botonPaginacion(this.conteo)
+    this.incioShowPelis(this.conteo)
+    }
+
+  incioShowPelis(conteo){
+
+    console.log('conteSHOW: ' + this.conteo)
 
     this.diccionario = []
-
-    if(idPag == null){    
-      this.getserverService.getPelis().subscribe(pelis => {
+     this.getserverService.getPaginacionPeli(this.conteo).subscribe(pelis => {
         for ( const id$ in pelis) {
           const p = pelis[id$];
             if(p.info_TMDB.original_title.length  > 18){
@@ -50,47 +69,18 @@ export class BodyInicioComponent implements OnInit {
           this.diccionario.push(pelis[id$]);
           
           } 
-        })
-
-     }else{
-      //idPag = this.route.snapshot.paramMap.get('id');
-      this.getserverService.getPaginacionPeli(parseInt(idPag)).subscribe(pelis => {
-        for ( const id$ in pelis) {
-          const p = pelis[id$];
-            if(p.info_TMDB.original_title.length  > 18){
-              p.info_TMDB.titleLitel = p.info_TMDB.original_title.substring(0,18)
-            }else{p.info_TMDB.titleLitel = p.info_TMDB.original_title}
-  
-          if(p.info_TMDB.overview.length > 80){
-            p.info_TMDB.overviewLitel = p.info_TMDB.overview.substring(0,80)
-          }else{ p.info_TMDB.overviewLitel = p.info_TMDB.overview  }
-  
-          this.diccionario.push(pelis[id$]);
-          
-          } 
-        })
-        
+        })        
      }
-
-  }
 
   botonPaginacion(id){
 
-    if(id == null){
-      this.nextPagePelis = 1
-      this.previusPagePeli = 0
-    }else{
-      this.idPage = parseInt(id)
-      this.nextPagePelis = this.idPage + 1
+      this.nextPagePelis = id + 1
       this.previusPagePeli = 0
 
-        if(this.idPage > 1){
-          this.previusPagePeli = this.idPage - 1
-        }
+        if(id > 1){
+          this.previusPagePeli = id - 1 }
 
     }
-
-  }
 
 }
 
