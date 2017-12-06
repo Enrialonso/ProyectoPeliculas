@@ -1,63 +1,69 @@
-
-<app-banner-imagen-pelis></app-banner-imagen-pelis>
+<app-banner-imagen-pelis>
+</app-banner-imagen-pelis>
 
 <div class="col-sm-12">
-	
-	<div class="card">
-		<h3 class="card-header">Popular Movies!</h3><br>
-		
-			<div class="row">
 
-				<div *ngFor="let movie of diccionario;" 
-				class="col-sm-6  col-md-4 col-xl-3 col-12" style="padding-bottom: 5px;">	
-					<div class="card" >
-						<h4 class="card-header">{{ movie.info_TMDB.titleLitel}}.</h4>
-						<a routerLink="/pelicula/{{movie.id_TMDB}}">
-							<img class="img-fluid" style="width: 100%; display: block;" 
-							src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.info_TMDB.poster_path}}" alt="{{ movie.title }}">
-						</a>
-						<div class="card-body">
-							<p class="card-text">{{movie.info_TMDB.overviewLitel}} </p>
-						</div>
-						<div class="card-footer">
+    <div class="card">
+        <h3 class="card-header">Popular Movies!</h3>
+        <br>
 
-									<i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{movie.info_TMDB.vote_average}}</span> </i> 
-							 
-									<i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{movie.info_TMDB.vote_count}} </span> </i> 
-							
-						</div>
-					</div>
-				</div> 	
-				
-			</div>
-	
-			<div class="row col-sm-12">
-				
-					  <div class="col-sm-6" style="padding-top: 10px;">
-					
-						<a *ngIf="nextPagePelis == 1 else htmlLocalHost" routerLink="/" class="btn-block btn btn-success disabled" role="button"  > <h2>Atras</h2> </a>
-						  <ng-template #htmlLocalHost>
-							<a *ngIf="nextPagePelis == 2 else conteEnBoton" routerLink="/" (click)="previusPage()" class="btn-block btn btn-success" role="button"  > <h2>Atras</h2> </a>
-						  </ng-template>
-						  <ng-template #conteEnBoton>
-							<a routerLink="/pag-peli/{{previusPagePeli}}" (click)="previusPage()" class="btn-block btn btn-success" role="button"  > <h2>Atras</h2> </a>
-						  </ng-template>
-						
-					
-					  </div>
-					
-					  <div class="col-sm-6" style="padding-top: 10px;">
-						
-							<a routerLink="/pag-peli/{{nextPagePelis}}" (click)="nextPage()" class="btn-block btn btn-success" role="button" > <h2>Siguiente</h2> </a>
-						
-					  </div>
-				
-					</div>
+        <div class="row">
 
-					<br>
+            <div *ngFor="let movie of diccionario;" class="col-sm-6  col-md-4 col-xl-2 col-12" style="padding-bottom: 5px;">
+                <div class="card">
+                    <h4 class="card-header">{{ movie.info_TMDB.titleLitel}}.</h4>
+                    <a routerLink="/pelicula/{{movie.id_TMDB}}">
+                        <img class="img-fluid" style="width: 100%; display: block;" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.info_TMDB.poster_path}}" alt="{{ movie.title }}">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text">{{movie.info_TMDB.overviewLitel}} </p>
+                    </div>
+                    <div class="card-footer">
 
-		<div class="card-footer text-muted">
-			Footer!
-		</div>
-	</div>
+                        <i class="fa fa-heart float-left" aria-hidden="true">  <span class="like">{{movie.info_TMDB.vote_average}}</span> </i>
+
+                        <i class="fa fa-thumbs-up float-right" aria-hidden="true">  <span class="like"> {{movie.info_TMDB.vote_count}} </span> </i>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-sm-6" style="padding-top: 10px;">
+
+                    <a *ngIf="nextPagePelis == 1 else htmlLocalHost" routerLink="/" class="btn-block btn btn-success disabled" role="button">
+                        <h2>Atras</h2> </a>
+                    <ng-template #htmlLocalHost>
+                        <a *ngIf="nextPagePelis == 2 else conteEnBoton" routerLink="/" (click)="previusPage()" class="btn-block btn btn-success" role="button">
+                            <h2>Atras</h2> </a>
+                    </ng-template>
+                    <ng-template #conteEnBoton>
+                        <a routerLink="/pag-peli/{{previusPagePeli}}" (click)="previusPage()" class="btn-block btn btn-success" role="button">
+                            <h2>Atras</h2> </a>
+                    </ng-template>
+
+                </div>
+
+                <div class="col-sm-6" style="padding-top: 10px;">
+
+                    <a routerLink="/pag-peli/{{nextPagePelis}}" (click)="nextPage()" class="btn-block btn btn-success" role="button">
+                        <h2>Siguiente</h2> </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="card-footer text-muted">
+            <app-footer></app-footer>
+        </div>
+    </div>
 </div>

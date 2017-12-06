@@ -9,7 +9,7 @@
 			<div class="row">
 
 				<div *ngFor="let serie of diccionario; let isFirst = first; let isLast = last; let indexfor = index" 
-				class="col-sm-6  col-md-4 col-xl-3 col-12" style="padding-bottom: 5px;">	
+				class="col-sm-6  col-md-4 col-xl-2 col-12" style="padding-bottom: 5px;">	
 					<div class="card" >
 						<h4 class="card-header">{{ serie.info_TMDB.nameLitel }}.</h4>
 						<a routerLink="/serie/{{serie.id}}">
@@ -30,10 +30,41 @@
 				</div> 	
 				
 			</div>
+
+			<div class="container-fluid">
+				
+							<div class="row">
+				
+								<div class="col-sm-6" style="padding-top: 10px;">
+				
+									<a *ngIf="nextPageSeries == 1 else htmlLocalHost" routerLink="/" class="btn-block btn btn-success disabled" role="button"><h2>Atras</h2> </a>
+									<ng-template #htmlLocalHost>
+										<a *ngIf="nextPageSeries== 2 else conteEnBoton" routerLink="/popular-series" (click)="previusPage()" class="btn-block btn btn-success" role="button">
+											<h2>Atras</h2> </a>
+									</ng-template>
+									<ng-template #conteEnBoton>
+										<a routerLink="/pag-seri/{{previusPageSeries}}" (click)="previusPage()" class="btn-block btn btn-success" role="button">
+											<h2>Atras</h2> </a>
+									</ng-template>
+				
+								</div>
+				
+								<div class="col-sm-6" style="padding-top: 10px;">
+				
+									<a routerLink="/pag-seri/{{nextPageSeries}}" (click)="nextPage()" class="btn-block btn btn-success" role="button">
+										<h2>Siguiente</h2> </a>
+				
+								</div>
+				
+							</div>
+				
+						</div>
 	
+				
+				<br>
 
 		<div class="card-footer text-muted">
-			Footer!
+			<app-footer></app-footer>
 		</div>
 	</div>
 </div>

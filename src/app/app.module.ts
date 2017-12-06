@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { MainNavBarComponent } from './main-nav-bar/main-nav-bar.component';
@@ -14,7 +15,7 @@ import { ShowSerieComponent } from './show-serie/show-serie.component';
 import { PopularSeriesComponent } from './popular-series/popular-series.component';
 import { PopularPeopleComponent } from './popular-people/popular-people.component';
 import { GetserverService } from './servicios/getserver.service';
-import { PaginacionPelisComponent } from './paginacion-pelis/paginacion-pelis.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'popular-series', component: PopularSeriesComponent },
   { path: 'serie/:id', component: ShowSerieComponent },
   { path: 'popular-people', component: PopularPeopleComponent },
-  { path: 'pag-peli/:id', component: BodyInicioComponent }
+  { path: 'pag-peli/:id', component: BodyInicioComponent },
+  { path: 'pag-seri/:id', component: PopularSeriesComponent }
 ];
 
 @NgModule({
@@ -36,13 +38,14 @@ const routes: Routes = [
     ShowSerieComponent,
     PopularSeriesComponent,
     PopularPeopleComponent,
-    PaginacionPelisComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
-    HttpModule
+    HttpModule,
+    InfiniteScrollModule
     
   ],
   providers: [GetserverService],

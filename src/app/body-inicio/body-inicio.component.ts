@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { popularMovies } from '../modelos/popularmovies.modelo'
 import { GetserverService } from '../servicios/getserver.service';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 
@@ -10,77 +9,74 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class BodyInicioComponent implements OnInit {
 
-  objeto = new popularMovies
-
   diccionario: Array<object> = []
-
-  id: number
-
   conteo: number = 0
-
   nextPagePelis = 0
   previusPagePeli = 0
-  idPage: number
 
-  constructor(private getserverService: GetserverService,private route: ActivatedRoute) { 
 
-    if(this.route.snapshot.paramMap.get('id') == null)
-    {this.conteo = 0}
-    else
-    {this.conteo = parseInt(this.route.snapshot.paramMap.get('id'))}
-
-   }
-
-  ngOnInit() { 
-
-    this.botonPaginacion(this.conteo)
-    this.incioShowPelis(this.conteo)
-        
-  }
-
-  previusPage(){
-    this.conteo = this.conteo - 1
-    this.botonPaginacion(this.conteo)
-    this.incioShowPelis(this.conteo)
-  }
-
-  nextPage(){
-    this.conteo = this.conteo + 1
-    this.botonPaginacion(this.conteo)
-    this.incioShowPelis(this.conteo)
+  constructor(private getserverService: GetserverService, private route: ActivatedRoute) {
+    
+        if (this.route.snapshot.paramMap.get('id') == null) {
+            this.conteo = 0
+        } else {
+            this.conteo = parseInt(this.route.snapshot.paramMap.get('id'))
+        }
+    
     }
-
-  incioShowPelis(conteo){
-
-    console.log('conteSHOW: ' + this.conteo)
-
-    this.diccionario = []
-     this.getserverService.getPaginacionPeli(this.conteo).subscribe(pelis => {
-        for ( const id$ in pelis) {
-          const p = pelis[id$];
-            if(p.info_TMDB.original_title.length  > 18){
-              p.info_TMDB.titleLitel = p.info_TMDB.original_title.substring(0,18)
-            }else{p.info_TMDB.titleLitel = p.info_TMDB.original_title}
-  
-          if(p.info_TMDB.overview.length > 80){
-            p.info_TMDB.overviewLitel = p.info_TMDB.overview.substring(0,80)
-          }else{ p.info_TMDB.overviewLitel = p.info_TMDB.overview  }
-  
-          this.diccionario.push(pelis[id$]);
-          
-          } 
-        })        
-     }
-
-  botonPaginacion(id){
-
-      this.nextPagePelis = id + 1
-      this.previusPagePeli = 0
-
-        if(id > 1){
-          this.previusPagePeli = id - 1 }
-
+    
+    ngOnInit() {
+    
+        this.botonPaginacion(this.conteo)
+        this.incioShowPelis(this.conteo)
+    
     }
-
-}
-
+    
+    previusPage() {
+        this.conteo -= 1
+        this.botonPaginacion(this.conteo)
+        this.incioShowPelis(this.conteo)
+    }
+    
+    nextPage() {
+        this.conteo += 1
+        this.botonPaginacion(this.conteo)
+        this.incioShowPelis(this.conteo)
+    }
+    
+    incioShowPelis(conteo) {
+    
+        this.diccionario = []
+        this.getserverService.getPaginacionPeli(this.conteo).subscribe(pelis => {
+            for (const id$ in pelis) {
+                const p = pelis[id$];
+                if (p.info_TMDB.original_title.length > 18) {
+                    p.info_TMDB.titleLitel = p.info_TMDB.original_title.substring(0, 18) + '...'
+                } else {
+                    p.info_TMDB.titleLitel = p.info_TMDB.original_title
+                }
+    
+                if (p.info_TMDB.overview.length > 80) {
+                    p.info_TMDB.overviewLitel = p.info_TMDB.overview.substring(0, 80)
+                } else {
+                    p.info_TMDB.overviewLitel = p.info_TMDB.overview
+                }
+    
+                this.diccionario.push(pelis[id$]);
+    
+            }
+        })
+    }
+    
+    botonPaginacion(id) {
+    
+        this.nextPagePelis = id + 1
+        this.previusPagePeli = 0
+    
+        if (id > 1) {
+            this.previusPagePeli = id - 1
+        }
+    
+    }
+    
+    }
