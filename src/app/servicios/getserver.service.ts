@@ -39,6 +39,10 @@ export class GetserverService {
 
   getPaginacionSeries(id) {
     return this.http.get(this.presURL + 'pag-seri/' + id).map(res => res.json());
-  }   
+  }
+  
+  getComentariosPelis(id) {
+    return this.http.get(this.presURL + 'comentarios-pelis/' + id).map(res => res.json());
+  } 
 
 }

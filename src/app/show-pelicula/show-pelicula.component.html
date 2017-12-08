@@ -1,14 +1,14 @@
 <div class="col-sm-12 ">
     
     <div class="card">
-      <h3 class="card-header">Pelicula - {{ infoPelicula?.info_TMDB?.original_title }}.</h3><br>
+      <h3 class="card-header">Pelicula - {{ infoPelicula.info_TMDB?.original_title }}.</h3><br>
       
         <div class="card-deck">
         
             <div class="col-sm-3 " style="padding-bottom: 25px">
 
-                <img class=" img-thumbnail" src="https://image.tmdb.org/t/p/w640{{ infoPelicula.info_TMDB.poster_path }}" 
-                style="width: 100%;" alt="Pelicula - {{ infoPelicula.info_TMDB.original_title }}">
+                <img class=" img-thumbnail" src="https://image.tmdb.org/t/p/w640{{ infoPelicula.info_TMDB?.poster_path }}" 
+                style="width: 100%;" alt="Pelicula - {{ infoPelicula.info_TMDB?.original_title }}">
 
             </div>
             <div class="col-sm-9 " style="padding-bottom: 25px; ">
@@ -16,14 +16,14 @@
                 <div class="card border-success ">
                     <div class="card-body">
                       <blockquote class="card-blockquote">
-                        <h1> <span class="text-muted">Pelicula: </span>{{ infoPelicula.info_TMDB.original_title }}.</h1>
-                        <h3> <span class="text-muted">Overview: </span>{{ infoPelicula.info_TMDB.overview }}</h3> <hr>
-                        <h3> <span class="text-muted">Lanzamiento: </span>{{ infoPelicula.info_TMDB.release_date }}</h3>
-                        <h3> <span class="text-muted">Duracion: </span>{{ infoPelicula.info_TMDB.runtime }} min.</h3>
-                        <h3> <span class="text-muted">Presupuesto: </span>{{ infoPelicula.info_TMDB.budget }} M$.</h3>
-                        <h3> <span class="text-muted">Taquilla: </span>{{ infoPelicula.info_TMDB.revenue }} M$.</h3>
+                        <h1> <span class="text-muted">Pelicula: </span>{{ infoPelicula.info_TMDB?.original_title }}.</h1>
+                        <h3> <span class="text-muted">Overview: </span>{{ infoPelicula.info_TMDB?.overview }}</h3> <hr>
+                        <h3> <span class="text-muted">Lanzamiento: </span>{{ infoPelicula.info_TMDB?.release_date }}</h3>
+                        <h3> <span class="text-muted">Duracion: </span>{{ infoPelicula.info_TMDB?.runtime }} min.</h3>
+                        <h3> <span class="text-muted">Presupuesto: </span>{{ infoPelicula.info_TMDB?.budget }} M$.</h3>
+                        <h3> <span class="text-muted">Taquilla: </span>{{ infoPelicula.info_TMDB?.revenue }} M$.</h3>
                         <h3> <span class="text-muted">Genero: </span> 
-                          <span *ngFor="let info of infoPelicula.info_TMDB.genres; let isfirst= first; let isLast = last;">  
+                          <span *ngFor="let info of infoPelicula.info_TMDB?.genres; let isfirst= first; let isLast = last;">  
                         
                           <span *ngIf="isFirst; else NormalDataOrLast"> {{info.name}}, </span>
                           <ng-template #NormalDataOrLast>
@@ -40,9 +40,11 @@
                     </div>
                   </div>
             
-            </div>   
+            </div> 
+          
+        </div>
         
-        </div> 
+        <app-comentarios-pelis></app-comentarios-pelis>
   
       <div class="card-footer text-muted">
         <app-footer></app-footer>

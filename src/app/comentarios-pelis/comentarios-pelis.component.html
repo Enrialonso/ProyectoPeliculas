@@ -1,0 +1,66 @@
+
+<div class="container-fluid">
+  
+
+        <ul class="list-group list-group-flush">
+          
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <li class="list-group-item"> <h2> Comentarios: </h2></li>
+
+            </div>
+            <div class="col-sm-6">
+
+              <ng-template #content let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title">Enviar Comentario:</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form #f=ngForm (ngSubmit)="onSubmit(f)">
+                    <div class="form-group">
+                      <h4 for="usr">Usuario:</h4>
+                      <input #user="ngModel" ngModel name="usuario" type="text" class="form-control" id="usuario" required>
+                      <h4 class="modal-title">Comentario:</h4>
+                      <textarea #text="ngModel" ngModel class="form-control" name="comentario"  rows="10" ></textarea>
+                      <br>
+                      <button type="submit" class="btn btn-outline-success pull-Left" (click)="onSubmit(f); d('Cross click');">Enviar.</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-success" (click)="c('Close click')">Close</button>
+                </div>
+              </ng-template>
+              
+              <button class="btn btn-lg btn-outline-success pull-right" (click)="open(content)">Enviar Comentario</button>
+            
+            
+
+            </div>
+
+          </div>
+           
+          <li *ngFor="let coment of comentariosPelis?.comentario;" class="list-group-item">
+        
+            <div class="container">
+              <h2 class="userName"> <i class="fa fa-user-o" aria-hidden="true"></i> {{coment.user_name}} </h2>
+              <img  src="{{coment.user_image}}" class="float-left rounded-circle img-thumbnail" style="margin: 10px 20px 25px 5px;" > 
+              <h4>Comentario:</h4> <p>  {{coment.comentario}}</p> 
+              
+            </div>
+        
+          </li>
+        </ul>
+
+
+</div>
+
+ 
+  
+    
+

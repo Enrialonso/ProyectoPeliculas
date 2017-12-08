@@ -4,21 +4,11 @@ exports.findAll = function(param, id, callback) {
     var collection = db.collection(param)
     console.log(param)
     console.log('esto es id: ' + id)
-    if (param == 'Personas2') {
-        var cantidad = 18
-    } else {
-        var cantidad = 18
-    }
+    if (param == 'Personas2') {var cantidad = 18} else {var cantidad = 18 }
     id = parseInt(id)
-    if (id == 0) {
-        id = 0
-    } else {
-        id = id * 18
-    }
+    if (id != 0){id = id * 18}
 
-    collection.find().skip(id).limit(cantidad).sort({
-        'popularity': -1
-    }).toArray(function(err, docs) {
+    collection.find().skip(id).limit(cantidad).sort({'popularity': -1}).toArray(function(err, docs) {
         callback(err, docs)
     })
 }
@@ -29,13 +19,11 @@ exports.findOne = function(param, id, callback) {
     console.log('paso por la busqueda find one')
 
     if (param == 'all_peliculas_TMDB') {
-        query = {
-            "id_TMDB": String(id)
-        }
+        query = {"id_TMDB": String(id)}
     } else if (param == 'all_series_TMDB') {
-        query = {
-            "id": parseInt(id)
-        }
+        query = {"id": parseInt(id)}
+    } else if (param == 'comentarios_pelis') {
+        query = {"id": String(id)}
     }
 
     console.log(query)

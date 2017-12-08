@@ -16,6 +16,19 @@ router.get('/pelicula/:id', function(req, res) {
     })
 })
 
+router.get('/comentarios-pelis/:id', function(req, res) {
+    console.log('GET /comentarios-pelicula')
+    var coleccion = 'comentarios_pelis'
+    var id = req.params.id
+    console.log(id)
+    dbPersonas.findOne(coleccion, id, function(err, docs) {
+        if (err) res.send(500, err.message)
+
+        console.log('docs extraidos comentario-peliculas')
+        res.status(200).jsonp(docs)
+    })
+})
+
 router.get('/serie/:id', function(req, res) {
     console.log('GET /serie')
     var coleccion = 'all_series_TMDB'
