@@ -116,6 +116,18 @@ router.get('/', function(req, res) {
     })
 })
 
+router.post('/post-comentarios-pelis/:id', function(req,res) {
+    console.log('POST /comentarios peliculas')
+	//console.log(req.body)
+    
+	dbPersonas.update(req.body, function(err,docs) {
+		if (err) return res.send(500,err.message)
+
+		console.log(docs)
+		res.status(200).jsonp(docs);
+	})
+})
+
 /*
 router.get('/:id', function(req,res) {
 	console.log('GET /personas/'+req.params.id)

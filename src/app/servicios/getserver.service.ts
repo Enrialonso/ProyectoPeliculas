@@ -43,6 +43,17 @@ export class GetserverService {
   
   getComentariosPelis(id) {
     return this.http.get(this.presURL + 'comentarios-pelis/' + id).map(res => res.json());
+    
   } 
+
+  postComentario(objeto){
+    //console.log(objeto)
+    this.http.post(this.presURL + 'post-comentarios-pelis/' + objeto.id, { objeto })
+        .subscribe(
+          res => {console.log(res);},
+          err => {console.log("Error occured");}
+        );
+
+  }
 
 }

@@ -51,24 +51,17 @@ exports.insert = function(doc, callback) {
     })
 }
 
-exports.update = function(key, doc, callback) {
-    var collection = db.collection('personas')
-
-    var objectId = db.getObjectId(key)
-    collection.update({
-        _id: objectId
-    }, {
-        $set: doc
-    }, {
-        w: 1
-    }, function(err, result) {
+exports.update = function(doc, callback) {
+    console.log(doc.objeto)
+    console.log('/////////////////////////// ' + doc.objeto.coleccion)
+    var col = doc.objeto.coleccion
+    console.log('/////////////////////////// ' + typeof(col)  + '////' + col)
+    var collection = db.collection(String(doc.objeto.coleccion))
+    //var objectId = db.getObjectId(key)
+    collection.update({id: String(doc.objeto.id)}, {$push: {comentario: {comentario: doc.objeto.comentario, user_name: String(doc.objeto.usuario),
+     user_image: 'https://randomuser.me/api/portraits/men/27.jpg'}}}, function(err, result) {
         if (err) callback(err)
-        else {
-            collection.findOne({
-                _id: objectId
-            }, function(err, docs) {
-                callback(err, docs)
-            })
+        else {collection.findOne({ id: String(doc.objeto.id)}, function(err, docs) {callback(err, docs)})
         }
     })
 }
